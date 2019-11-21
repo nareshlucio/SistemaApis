@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css">
+    <link rel="stylesheet" type="text/css" href="../assets/css/bootstrap.min.css">
+	<title></title>
+</head>
+<body style="background-image: url(../assets/images/fondo.gif); background-position: top; background-attachment: fixed; background-size: cover; background-repeat: no-repeat;">
+	<nav class="navbar navbar-expand-lg navbar-light bg-warning">
+  <a class="navbar-brand" href="../Modelo/logout.php">LogOut</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+</nav>
+<br>
+<br>
+<div class="container pt-lg-md">
+        <div class="row justify-content-center">
+          <div class="col-lg-8">
+            <div class="card shadow border-0">
+              <div class="card-header bg-white pb-5">
+                <center><h1>Bienvenido!!</h1></center>
+                <br>
+                <h5>Gracias por visitarnos, aqui proporcionaremos algunos servicios de ResAPI</h5>
+              </div>
+              <div class="card-body px-lg-5 py-lg-5">
+              	<div class="form-group">
+              		<label class="text-lowercase">Seleccione algun servicio</label>
+              	</div>
+              	<div class="form-group">
+              		<select class="form-control" id="apis" name="url">
+              			<option value="default" selected="">Seleccionar</option>
+              			<option value="https://deezer-api.webcindario.com/track/">Musicapi(cancion)</option>
+                    <option value="https://deezer-api.webcindario.com/album/">Musicapi(album)</option>
+                    <option value="https://deezer-api.webcindario.com/artist/">Musicapi(artista)</option>
+              			<option value="https://apiclima2.000webhostapp.com/">API Clima</option>
+              			<option value="http://gabrielaoceguera.andocodeando.net/api/">Informacion de el Gobierno</option>
+              			<option value="http://lanasaromobrito.000webhostapp.com/">Informacion de la Nasa</option>
+                    <option value="https://api-mercadolibre.000webhostapp.com/">Api Mercado Libre</option>
+                    <option value="https://boosk-2719is.000webhostapp.com/">Api Libros</option>
+              		</select> 
+              	</div>
+              	<div class="form-group">
+              		<label id="mens"></label>
+              	</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+      <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+      <script type="text/javascript">
+        $(document).ready(function(){
+          $("#apis").change(function(){
+            var valor = $("#apis").val();
+            $.ajax({
+              url: '../Controlador/apis.php',
+              type: 'POST',
+              data: {url:valor},
+              success:function(res){
+                $("#mens").html(res);
+              },
+              fail:function(res){
+                $("#mens").html("le Falle señorS");
+              },
+            });
+          });
+        });
+      </script>
+</body>
+</html>

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css">
+    <title>Services Rest Api-Registrarse</title>
+</head>
+<body style="background-image: url(../assets/images/fondo.gif); background-position: top; background-attachment: fixed; background-size: cover; background-repeat: no-repeat;">
+    <div class="container mt-8 pb-5">
+        <div class="row justify-content-center">
+            <div class="col-lg-5 col-md-7">
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <div class="row">
+                    <aside class="col">
+                        <div class="card">
+                            <article class="card-body">
+                            <h4 class="card-title mb-4 mt-1">Registro</h4>
+                            <form method="POST" id="frmresgis">
+                                <div class="form-group">
+                                    <label>Nombre(s)</label>
+                                    <input name="nombres" class="form-control" placeholder="Nombres" type="text">
+                                </div>
+                                <div class="form-group">
+                                    <label>Apellido(s)</label>
+                                    <input class="form-control" placeholder="Apellidos" type="text" name="ape">
+                                </div> 
+                                <div class="form-group">
+                                    <label>Usuario</label>
+                                    <input class="form-control" placeholder="Usuario" type="text" name="usu">
+                                </div>
+                                <div class="form-group">
+                                    <label>Correo Electronico</label>
+                                    <input class="form-control" placeholder="E-mail" type="email" name="email">
+                                </div>
+                                <div class="form-group">
+                                    <label>Contraseña</label>
+                                    <input class="form-control" placeholder="******" type="password" name="cont">
+                                </div> 
+                                <div class="form-group">
+                                    <label id="mensaje"></label>
+                                </div>
+                                <div class="form-group">
+                                    <button type="button" id="btnregis" class="btn btn-primary btn-block">Registrarse</button>
+                                </div>                                                     
+                            </form>
+                            </article>
+                        </div>
+                    </aside>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $('#btnregis').click(function(e){
+                e.preventDefault(); 
+                var datos = $('#frmresgis').serialize(); 
+                $('#mensaje').html("<img src='http://www.lagrangechurrascaria.com.mx/correo/web/images/enviando.gif' class='img-fluid' width='200px'> Enviando Informacion porfavor espere");
+                $.ajax({
+                    type:"POST",
+                    url:"../Modelo/RegisUsu.php",
+                    data: datos,
+                    success:function(r){
+                        $('#mensaje').html("<div class='alert alert-success' role='alert'>"+r+"</div>");
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
